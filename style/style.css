@@ -1,0 +1,23 @@
+html, body{
+	margin: 0;
+	padding: 0;
+}
+#wrapper{
+	margin: 50px;
+}
+#vk_auth{
+	float:left;
+
+}
+.container{
+	width: auto;
+	float:left;
+	margin: 0 0 0 40px;
+}
+.post{
+	background-color: lightgrey;
+	padding: 5px;
+	margin: 0 0 5px 0;
+	border-radius: 4px;
+}
+
