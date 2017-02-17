@@ -4,20 +4,25 @@ html, body{
 }
 #wrapper{
 	margin: 50px;
+	width: auto;
 }
 #vk_auth{
 	float:left;
-
+	width: 30%;
 }
 .container{
-	width: auto;
+	width: 70%;
 	float:left;
 	margin: 0 0 0 40px;
 }
+.post_wrapper{
+	margin:0 0 20px 0; 
+	border: 1px #e1e4eb solid;
+	border-radius: 3px;
+	overflow: hidden;
+}
 .post{
-	background-color: lightgrey;
+	background: #fff;
 	padding: 5px;
-	margin: 0 0 5px 0;
-	border-radius: 4px;
 }
 
