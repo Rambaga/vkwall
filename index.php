@@ -1,8 +1,8 @@
 <?
 //ID APP
-$client_id = '5879757';  // id вашего приложения
+$client_id = '';  
 //SECRET KEY
-$client_secret = '9YxcxzG23M6Fx8CcKjYT';  // секретный ключ вашего приложения
+$client_secret = '';  
 $my_url = $_SERVER['SERVER_NAME'];
 session_start();
 $code = $_REQUEST["code"];
