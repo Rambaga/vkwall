@@ -1,8 +1,8 @@
 <?
 //ID APP
-$client_id = '';  // id вашего приложения
+$client_id = '5879757';  // id вашего приложения
 //SECRET KEY
-$client_secret = '';  // секретный ключ вашего приложения
+$client_secret = '9YxcxzG23M6Fx8CcKjYT';  // секретный ключ вашего приложения
 $my_url = $_SERVER['SERVER_NAME'];
 session_start();
 $code = $_REQUEST["code"];
@@ -26,7 +26,7 @@ if (empty($code)) {
 	echo curl_error($ch);
 	$result = curl_exec($ch);
 	curl_close($ch);
-	echo var_dump($result);
+	//echo var_dump($result);
 	$result = json_decode($result, true);
 	//$access_token = $result['access_token'];
 	//$main_user = $result['user_id'];
@@ -44,14 +44,14 @@ if (empty($code)) {
 <body>
 	<script src="js/init.js"></script>
 	<div id="wrapper">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-3">
 					<div id="auth_wrapper">
 						<div id="vk_auth"></div>
 					</div>
 				</div>
-  				<div class="col-xs-12 col-sm-12 col-md-9">
+  				<div class="col-xs-12 col-sm-12 col-md-8">
 					<div id="wall_wrapper">
 						<div id="write_wrapper">
 							<div class="post_wrapper">
