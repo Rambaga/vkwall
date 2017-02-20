@@ -1,5 +1,5 @@
 //BEGIN INIT APP
 VK.init({
-    apiId: 5879757
+    apiId: 5886502
 });
 //END

@@ -1,17 +1,28 @@
 //BEGIN WIDGET AUTH
-VK.Widgets.Auth("vk_auth", {width: "200px", authUrl: ''});
+//VK.Widgets.Auth("vk_auth", {width: "200px", authUrl: ''});
 //END
+
+(function (){
+    $.ajax({
+        url: "https://api.vk.com/method/wall.get",
+        data: {
+            owner_id: userid,
+            filter: "owner",
+            v: "5.26",
+            extended: 1,
+        },
+        dataType: "jsonp",    
+        success: gotData,
+    });
+}());
 //BEGIN ADD POST
-var user_id;
 function add_post(){
     $.ajax({
         url: "https://api.vk.com/method/wall.post",
         data: {
-        //?
-        owner_id: 208262993,
+        owner_id: userid,
         message: "hi guys",
-        //?
-        access_token: 'ec13711edb788e90b8dfe1ee036fd111f8b985278a6966479aba6c985e108826e92cfacd3fc4160bd6613',
+        access_token: session,
         v: "5.26",
         },
         dataType: "jsonp",    
@@ -27,8 +38,7 @@ function delete_post(post){
         url: "https://api.vk.com/method/wall.delete",
         data: {
         post_id: post,
-        //?
-        access_token: 'ec13711edb788e90b8dfe1ee036fd111f8b985278a6966479aba6c985e108826e92cfacd3fc4160bd6613',
+        access_token: session,
         v: "5.26",
         },
         dataType: "jsonp",    
@@ -62,20 +72,3 @@ function gotData(data){
     }
     $('#posting').html(html);
 }
-//BEGIN CHECK AUTH
-VK.Auth.getLoginStatus(function(response) {
-
-        user_id=response.session.mid;
-        $.ajax({
-            url: "https://api.vk.com/method/wall.get",
-            data: {
-                owner_id: user_id,
-                filter: "owner",
-                v: "5.26",
-                extended: 1,
-            },
-            dataType: "jsonp",    
-            success: gotData,
-        });
-});
-//END
