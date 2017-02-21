@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vkWall</title>
+	<script src="https://vk.com/js/api/openapi.js?139"></script>
+	<link href="https://yastatic.net/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	<script src="js/init.js"></script>
+	<div id="wrapper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-1 col-md-2">
+					<div id="auth_wrapper">
+						<div id="vk_auth"></div>
+					</div>
+				</div>
+  				<div class="col-xs-12 col-sm-10 col-md-8">
+					<div id="wall_wrapper">
+						<div id="write_wrapper">
+							<div class="post_wrapper">
+								<textarea class="form-control" rows="3" placeholder="Что у вас нового?"></textarea>
+								<button type="button" class="btn btn-default" onclick="post_wall()">Send post</button>
+							</div>
+						</div>
+						<div id="posting"></div>
+					</div>
+  				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/wall.js"></script>
+</body>
+</html>

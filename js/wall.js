@@ -1,54 +1,46 @@
-//BEGIN WIDGET AUTH
+//WIDGET AUTH
 //VK.Widgets.Auth("vk_auth", {width: "200px", authUrl: ''});
-//END
+//LOGIN STATUS
+var userid;
+VK.Auth.getLoginStatus(function (response) {
+    if(response.session){
+        userid = response.session.mid;
+        get_wall(userid);
+    }else{
+        //change name site here
+        window.location = "https://oauth.vk.com/authorize?client_id=5886502&display=page&redirect_uri=http://vkwall&scope=wall&response_type=code&v=5.62";
+    }
+ });
 
-(function (){
-    $.ajax({
-        url: "https://api.vk.com/method/wall.get",
-        data: {
-            owner_id: userid,
-            filter: "owner",
-            v: "5.26",
-            extended: 1,
-        },
-        dataType: "jsonp",    
-        success: gotData,
-    });
-}());
-//BEGIN ADD POST
-function add_post(){
-    $.ajax({
-        url: "https://api.vk.com/method/wall.post",
-        data: {
-        owner_id: userid,
-        message: "hi guys",
-        access_token: session,
-        v: "5.26",
-        },
-        dataType: "jsonp",    
-        success: function(data){
-            console.log(data);
-        },
+//GET WALL
+function get_wall(userid){
+    VK.Api.call('wall.get', {owner_id: userid, filter: "owner", v: "5.26", extended: 1}, function(r) {
+    console.log(r);
+    if(r.response) {   
+        gotData(r);
+    }
     });
 }
-//END
-//BEGIN DELETE POST
-function delete_post(post){
-    $.ajax({
-        url: "https://api.vk.com/method/wall.delete",
-        data: {
-        post_id: post,
-        access_token: session,
-        v: "5.26",
-        },
-        dataType: "jsonp",    
-        success: function(data){
-            console.log(data);
-        },
+//SEND POST
+function post_wall(){
+    VK.Api.call('wall.post', {message: "hi guy", v: "5.26"}, function(r) {
+        if(r.response) {
+            alert('Успешно добавлено');
+        }
     });
 }
-//END
+//DELETE POST
+function delete_wall(post){
+    VK.Api.call('wall.delete', {post_id: post, v: "5.26"}, function(r) {
+        console.log(r);
+        if(r.response) {
+            alert('Успешно удалено');
+        }
+    });
+}
+
 function gotData(data){   
+    console.log(data);
     if(!data || !data.response || !data.response.items) {
        console.error( "VK returned some crap:", data);
        return;
@@ -68,7 +60,7 @@ function gotData(data){
         }else{
             html += post.text+' ' +post.text+'<br>'+post.text+' '+post.text+'<br>'+ post.text;
         }
-        html += '<br><button type="button" class="btn btn-default" onclick="delete_post('+post.id+')">Delete post</button></div></div>';
+        html += '<br><button type="button" class="btn btn-default" onclick="delete_wall('+post.id+')">Delete post</button></div></div>';
     }
     $('#posting').html(html);
 }
